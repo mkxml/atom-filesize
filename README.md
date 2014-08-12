@@ -6,6 +6,14 @@ This package displays the current file's size on the status bar component.
 
 ![filesize package screenshot](http://f.cl.ly/items/26081p1n180T3y381I1i/filesize_pkg_screen.jpg)
 
+# Get it now
+
+If you have Atom Shell Commands run this on your terminal to get it now:
+
+  `apm install filesize`
+
+You can also find this package searching for `filesize` in the Atom package browser inside Settings.
+
 # How it works
 
 It uses Node.JS to calculate the size in bytes of the current file in focus by Atom.
