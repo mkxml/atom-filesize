@@ -71,9 +71,16 @@ class FilesizeCalculator
     if err? or not size?
       callback.apply(this, [null, err])
       return null
+    if size is 0
+      if callback? and typeof callback is "function"
+        callback.apply(this, ["0 bytes", null])
+        return
+      else
+        return "0 bytes"
     if size is 1
       if callback? and typeof callback is "function"
         callback.apply(this, ["1 byte", null])
+        return
       else
         return "1 byte"
     scale = Math.floor(Math.log(size) / Math.log(@multiple))
