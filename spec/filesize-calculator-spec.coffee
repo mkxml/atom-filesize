@@ -23,6 +23,19 @@ describe "FilesizeCalculator", ->
         expect(size).toEqual(5)
 
   describe "when calling .makeReadable()", ->
+
+    describe "when size is 0", ->
+      it "should return 0 bytes", ->
+        filesizeCalculator.makeReadable 0, null, (size, err) ->
+          expect(err).toEqual(null)
+          expect(size).toEqual("0 bytes")
+
+    describe "when size is 1", ->
+      it "should return 1 byte", ->
+        filesizeCalculator.makeReadable 1, null, (size, err) ->
+          expect(err).toEqual(null)
+          expect(size).toEqual("1 byte")
+
     describe "when size < 1024 bytes", ->
       it "should display results in bytes when with 1024 multiple value", ->
         filesizeCalculator.makeReadable 1023, null, (size, err) ->
