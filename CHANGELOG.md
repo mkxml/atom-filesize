@@ -1,4 +1,4 @@
-## 0.1.2 - Updates the package to conform with Atom API 1.0+
+## 0.2.0 - Updates the package to conform with Atom API 1.0+
 * Fix the code implementing the new API and getting rid of deprecation alerts;
 * Fix the testes as well
 
