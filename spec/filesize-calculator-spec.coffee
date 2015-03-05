@@ -1,4 +1,3 @@
-{WorkspaceView, EditorView} = require("atom")
 FilesizeCalculator = require("../lib/filesize-calculator")
 os = require("os")
 
@@ -8,14 +7,12 @@ filesizeCalculator = null
 describe "FilesizeCalculator", ->
 
   beforeEach ->
-    atom.workspaceView = new WorkspaceView()
-    atom.workspace = atom.workspaceView.model
     waitsForPromise ->
-      atom.workspace.open("spec/fixtures/test.txt")
+      atom.workspace.open("../fixtures/test.txt")
     filesizeCalculator = new FilesizeCalculator()
 
   #TODO: Test .getSize() effectively
-  xdescribe "when calling .getSize()", ->
+  describe "when calling .getSize()", ->
     it "should return the correct size in bytes", ->
       filesizeCalculator.getSize (size, err) ->
         expect(err).toEqual(null)
