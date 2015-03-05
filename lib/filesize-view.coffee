@@ -1,4 +1,4 @@
-{View} = require("atom")
+{View} = require "atom-space-pen-views"
 
 module.exports =
 class FilesizeView extends View
@@ -12,22 +12,24 @@ class FilesizeView extends View
       @span "", class: "current-size", outlet: "currentSize"
 
   initialize: ->
+    @wk = atom.views.getView(atom.workspace)
 
   display: (info) ->
     #Inject file size span on status bar. Next to the file path
     if @shouldDisplay
       @show()
-      #TODO: Find a better way to update the span
-      atom.workspaceView.statusBar?.find(".current-size")[0].innerHTML = info
+      fzElement = @wk.querySelector(".current-size")
+      fzElement?.innerHTML = info
 
   show: ->
     if not @visible
       #Append filesize to the left of the status-bar component
-      atom.workspaceView.statusBar?.appendLeft(this)
+      statusBar = @wk.querySelector(".status-bar")
+      statusBar?.appendLeft(this)
       @visible = yes
 
   hide: ->
-    atom.workspaceView.statusBar?.find(".file-size").remove()
+    @wk.querySelector(".file-size")?.remove()
     @visible = no
 
   destroy: ->

@@ -1,15 +1,25 @@
+{Disposable, CompositeDisposable} = require "atom"
 FilesizeView = require("./filesize-view")
 FilesizeCalculator = require("./filesize-calculator")
 
 module.exports =
 
-  configDefaults:
-    KibibyteRepresentation: true
+  config:
+    KibibyteRepresentation:
+      type: "boolean"
+      default: true
+
+  wk: null
+  editor: null
 
   filesizeView: null
   filesizeCalculator: null
 
   activate: ->
+    @wk = atom.views.getView(atom.workspace)
+    @editor = atom.workspace.getActiveTextEditor()
+    @disposables = new CompositeDisposable
+
     #Instantiate FilesizeView
     @filesizeView = new FilesizeView()
 
@@ -17,22 +27,25 @@ module.exports =
     @filesizeCalculator = new FilesizeCalculator(@filesizeView)
 
     #Register action events
-    atom.workspaceView.on "filesize:activate", => @exec()
-    atom.workspaceView.on "editor:path-changed", => @exec()
-    atom.workspaceView.on "pane-container:active-pane-item-changed", => @exec()
-    atom.workspaceView.on "core:save", => @exec()
+    @disposables.add @editor?.onDidChangePath => @exec()
+    @disposables.add atom.workspace.onDidChangeActivePaneItem => @exec()
+    @wk.addEventListener "core:save", =>
+      @exec()
+    , false
+    @disposables.add new Disposable =>
+      @wk.removeEventListener "core:save", => @exec()
 
     #Observe config changes
-    atom.config.observe "filesize.KibibyteRepresentation", =>
+    atom.config.observe "filesize.KibibyteRepresentation", (checked) =>
       multiple = 1024
-      if atom.config.get("filesize.KibibyteRepresentation")
+      if checked
         multiple = 1024
       else
         multiple = 1000
       @filesizeCalculator.setMultiple(multiple)
 
     #Start package automatically on load
-    atom.workspaceView.trigger("filesize:activate")
+    @exec()
 
   deactivate: ->
     #Destroy FilesizeView instance
@@ -44,11 +57,7 @@ module.exports =
     if @filesizeCalculator?
       @filesizeCalculator = null
 
-    #Unsubscribe events
-    atom.workspaceView.off "filesize:activate", => @exec()
-    atom.workspaceView.off "editor:path-changed", => @exec()
-    atom.workspaceView.off "pane-container:active-pane-item-changed", => @exec()
-    atom.workspaceView.off "core:save", => @exec()
+    @disposables.dispose()
 
   exec: (callback) ->
     @filesizeCalculator?.fetchReadableSize (info, err) =>

@@ -1,11 +1,14 @@
 {
   "name": "filesize",
   "main": "./lib/filesize",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Displays the current file's size on the status bar",
   "repository": "https://github.com/mkautzmann/atom-filesize",
   "license": "MIT",
+  "dependencies": {
+    "atom-space-pen-views": "^2.0.3"
+  },
   "engines": {
-    "atom": ">0.50.0"
+    "atom": ">=0.174.0 <2.0.0"
   }
 }

@@ -46,7 +46,7 @@ class FilesizeCalculator
     if @multiple is 1000 then @activeBase = FilesizeCalculator.BASE_1000
 
   getSize: (callback) ->
-    editor = atom.workspace.getActivePaneItem()
+    editor = atom.workspace.getActiveTextEditor()
     filePath = null
     try
       file = editor?.buffer.file
