@@ -23,8 +23,13 @@ module.exports =
     #Instantiate FilesizeView
     @filesizeView = new FilesizeView()
 
+    multiple = 1024
+
+    if atom.config.get('filesize.KibibyteRepresentation') is false
+      multiple = 1000
+
     #Instantiate FilesizeCalculator
-    @filesizeCalculator = new FilesizeCalculator(@filesizeView)
+    @filesizeCalculator = new FilesizeCalculator(multiple)
 
     #Register action events
     @disposables.add @editor?.onDidChangePath => @exec()
@@ -60,7 +65,7 @@ module.exports =
     @disposables.dispose()
 
   exec: (callback) ->
-    @filesizeCalculator?.fetchReadableSize (info, err) =>
+    @filesizeCalculator?.fetchReadableInfo (info, err) =>
       if not err?
         @filesizeView.display(info)
         if callback? and typeof callback is "function"

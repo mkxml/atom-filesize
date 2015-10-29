@@ -1,4 +1,7 @@
 fs = require("fs")
+imageSize = require("image-size")
+mime = require("mime")
+moment = require("moment")
 
 module.exports =
 class FilesizeCalculator
@@ -27,15 +30,26 @@ class FilesizeCalculator
     "YB"
   ]
 
+  @IMAGE_SUPPORT = [
+    "image/bmp"
+    "image/jpeg"
+    "image/png"
+    "image/gif"
+    "image/tiff"
+    "image/x-tiff"
+    "image/svg+xml"
+    "image/webp"
+  ]
+
   activeBase: null
 
   constructor: (@multiple) ->
     if not @multiple? or typeof @multiple isnt "number" then @multiple = 1024
     @setActiveBase(multiple)
 
-  fetchReadableSize: (callback) ->
-    @getSize (size, err) =>
-      @makeReadable(size, err, callback)
+  fetchReadableInfo: (callback) ->
+    @getInfo (info, err) =>
+      @makeReadable(info, err, callback)
 
   setMultiple: (multiple) ->
     @multiple = multiple
@@ -45,7 +59,18 @@ class FilesizeCalculator
     if @multiple is 1024 then @activeBase = FilesizeCalculator.BASE_1024
     if @multiple is 1000 then @activeBase = FilesizeCalculator.BASE_1000
 
-  getSize: (callback) ->
+  getInfo: (callback) ->
+    info = {
+      absolutePath: null
+      size: null
+      mimeType: null
+      dateCreated: null
+      dateChanged: null
+      dimmensions: {
+        w: null
+        h: null
+      }
+    }
     editor = atom.workspace.getActiveTextEditor()
     filePath = null
     try
@@ -63,33 +88,47 @@ class FilesizeCalculator
           console.warn("File size not available, path not found.")
           callback.apply(this, [null, "File not found"])
         else
-          callback.apply(this, [stats.size, null])
+          info.absolutePath = filePath
+          info.mimeType = mime.lookup(filePath)
+          info.size = stats.size
+          info.dateCreated = moment(stats.birthtime)
+          .format("MMMM Do YYYY, hh:mm:ss a")
+          info.dateChanged = moment(stats.mtime)
+          .format("MMMM Do YYYY, hh:mm:ss a")
+          if info.mimeType in FilesizeCalculator.IMAGE_SUPPORT
+            imageRect = imageSize(filePath)
+            info.dimmensions.w = imageRect.width
+            info.dimmensions.h = imageRect.height
+          callback.apply(this, [info, null])
     else
       callback.apply(this, [null, "Can't get size now"])
 
-  makeReadable: (size, err, callback) ->
-    if err? or not size?
+  makeReadable: (info, err, callback) ->
+    if err? or not info?
       callback.apply(this, [null, err])
       return null
-    if size is 0
+    if info.size is 0
       if callback? and typeof callback is "function"
-        callback.apply(this, ["0 bytes", null])
+        info.size = "0 bytes"
+        callback.apply(this, [info, null])
         return
       else
-        return "0 bytes"
-    if size is 1
+        return info.size = "0 bytes"
+    if info.size is 1
       if callback? and typeof callback is "function"
-        callback.apply(this, ["1 byte", null])
+        info.size = "1 byte"
+        callback.apply(this, [info, null])
         return
       else
-        return "1 byte"
-    scale = Math.floor(Math.log(size) / Math.log(@multiple))
+        return info.size = "1 byte"
+    scale = Math.floor(Math.log(info.size) / Math.log(@multiple))
     metric = @activeBase[scale]
-    size = size / Math.pow(@multiple, scale)
+    size = info.size / Math.pow(@multiple, scale)
     #Efficiently round it to 2 decimal precision
     size = Number(Math.round(size + "e+2")  + "e-2")
     result = "#{size} #{metric}"
     if callback? and typeof callback is "function"
-      callback.apply(this, [result, null])
+      info.size = result
+      callback.apply(this, [info, null])
     else
-      return result
+      return info.size = result
