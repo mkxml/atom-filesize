@@ -24,7 +24,6 @@ class FilesizeView extends View
       fzElement?.innerHTML = info.size
       @tooltip?.dispose()
       tooltipHTML = @createTooltip(info)
-      console.log(tooltipHTML)
       @tooltip = atom.tooltips.add(this, {
         template: '<div class="tooltip" role="tooltip">
         <div class="tooltip-arrow"></div><div class="tooltip-outer">

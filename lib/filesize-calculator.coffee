@@ -37,8 +37,8 @@ class FilesizeCalculator
     "image/gif"
     "image/tiff"
     "image/x-tiff"
-    "image/svg+xml"
     "image/webp"
+    "image/vnd.adobe.photoshop"
   ]
 
   activeBase: null
@@ -71,10 +71,10 @@ class FilesizeCalculator
         h: null
       }
     }
-    editor = atom.workspace.getActiveTextEditor()
+    editor = atom.workspace.getActivePaneItem()
     filePath = null
     try
-      file = editor?.buffer.file
+      file = editor?.buffer?.file or editor?.file
       filePath = file?.path
     #User opened settings or some tab without file
     catch error
@@ -96,9 +96,12 @@ class FilesizeCalculator
           info.dateChanged = moment(stats.mtime)
           .format("MMMM Do YYYY, hh:mm:ss a")
           if info.mimeType in FilesizeCalculator.IMAGE_SUPPORT
-            imageRect = imageSize(filePath)
-            info.dimmensions.w = imageRect.width
-            info.dimmensions.h = imageRect.height
+            try
+              imageRect = imageSize(filePath)
+              info.dimmensions.w = imageRect.width
+              info.dimmensions.h = imageRect.height
+            catch error
+              console.warn("Invalid image format!")
           callback.apply(this, [info, null])
     else
       callback.apply(this, [null, "Can't get size now"])
