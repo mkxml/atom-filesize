@@ -11,7 +11,8 @@ class FilesizeView extends View
 
   @content: ->
     @div class: "file-size inline-block", =>
-      @span "", class: "current-size", outlet: "currentSize"
+      @a class: "file-size-link", =>
+        @span "", class: "current-size", outlet: "currentSize"
 
   initialize: ->
     @wk = atom.views.getView(atom.workspace)
@@ -22,15 +23,21 @@ class FilesizeView extends View
       @show()
       fzElement = @wk.querySelector(".current-size")
       fzElement?.innerHTML = info.size
+      html = @createTooltip(info)
       @tooltip?.dispose()
-      tooltipHTML = @createTooltip(info)
-      @tooltip = atom.tooltips.add(this, {
-        template: '<div class="tooltip" role="tooltip">
-        <div class="tooltip-arrow"></div><div class="tooltip-outer">
-        <div class="tooltip-inner" style="padding: 0;"></div></div></div>'
-        title: tooltipHTML
-        placement: 'top'
-      })
+      @tooltip = @instanceTooltip(this, html)
+
+  instanceTooltip: (target, tooltipHTML) ->
+    return atom.tooltips.add(target, {
+      template: '<div class="tooltip" role="tooltip">
+      <div class="tooltip-arrow"></div><div class="tooltip-outer">
+      <div class="tooltip-inner" style="padding: 0;"></div></div></div>'
+      title: tooltipHTML
+      placement: 'top'
+      trigger: 'click'
+      delay: 0
+      animation: false
+    })
 
   createTooltip: (info) ->
     outer = document.createElement('div')
@@ -106,10 +113,10 @@ class FilesizeView extends View
       @visible = yes
 
   hide: ->
+    @tooltip?.dispose()
     @wk.querySelector(".file-size")?.remove()
     @visible = no
 
   destroy: ->
-    @tooltip?.dispose()
     @hide()
     @shouldDisplay = no
