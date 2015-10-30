@@ -7,6 +7,8 @@ class FilesizeView extends View
 
   shouldDisplay: yes
 
+  showPopup: true
+
   tooltip: null
 
   @content: ->
@@ -14,7 +16,8 @@ class FilesizeView extends View
       @a class: "file-size-link", =>
         @span "", class: "current-size", outlet: "currentSize"
 
-  initialize: ->
+  initialize: (showPopup) ->
+    @togglePopupAppearance(showPopup)
     @wk = atom.views.getView(atom.workspace)
 
   display: (info) ->
@@ -23,9 +26,10 @@ class FilesizeView extends View
       @show()
       fzElement = @wk.querySelector(".current-size")
       fzElement?.innerHTML = info.size
-      html = @createTooltip(info)
-      @tooltip?.dispose()
-      @tooltip = @instanceTooltip(this, html)
+      if @showPopup
+        html = @createTooltip(info)
+        @tooltip?.dispose()
+        @tooltip = @instanceTooltip(this, html)
 
   instanceTooltip: (target, tooltipHTML) ->
     return atom.tooltips.add(target, {
@@ -104,6 +108,9 @@ class FilesizeView extends View
        inline-block; text-align: left; vertical-align:
         middle;'>#{info}</td>
     </tr>"
+
+  togglePopupAppearance: (showPopup) ->
+    @showPopup = showPopup
 
   show: ->
     if not @visible

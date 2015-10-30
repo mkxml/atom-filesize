@@ -8,6 +8,9 @@ module.exports =
     KibibyteRepresentation:
       type: "boolean"
       default: true
+    "EnablePopupAppearance":
+      type: "boolean"
+      default: true
     "DisplayFullDayTimeOnPopup":
       type: "boolean"
       default: true
@@ -23,18 +26,20 @@ module.exports =
     @editor = atom.workspace.getActiveTextEditor()
     @disposables = new CompositeDisposable
 
+    showPopup = atom.config.get("filesize.EnablePopupBehavior")
+
     #Instantiate FilesizeView
-    @filesizeView = new FilesizeView()
+    @filesizeView = new FilesizeView(showPopup)
 
     multiple = 1024
 
-    Use24Hour = atom.config.get("filesize.DisplayFullDayTimeOnPopup")
+    use24Hour = atom.config.get("filesize.DisplayFullDayTimeOnPopup")
 
     if atom.config.get('filesize.KibibyteRepresentation') is false
       multiple = 1000
 
     #Instantiate FilesizeCalculator
-    @filesizeCalculator = new FilesizeCalculator(multiple, Use24Hour)
+    @filesizeCalculator = new FilesizeCalculator(multiple, use24Hour)
 
     #Register action events
     @disposables.add @editor?.onDidChangePath => @exec()
@@ -56,6 +61,9 @@ module.exports =
 
     atom.config.observe "filesize.DisplayFullDayTimeOnPopup", (checked) =>
       @filesizeCalculator.setHourFormat(checked)
+
+    atom.config.observe "filesize.EnablePopupBehavior", (checked) =>
+      @filesizeView.togglePopupAppearance(checked)
 
     #Start package automatically on load
     @exec()
