@@ -43,8 +43,11 @@ class FilesizeCalculator
 
   activeBase: null
 
-  constructor: (@multiple) ->
+  hourFormat: "HH:mm:ss"
+
+  constructor: (@multiple, hourFormat) ->
     if not @multiple? or typeof @multiple isnt "number" then @multiple = 1024
+    @setHourFormat(hourFormat)
     @setActiveBase(multiple)
 
   fetchReadableInfo: (callback) ->
@@ -54,6 +57,9 @@ class FilesizeCalculator
   setMultiple: (multiple) ->
     @multiple = multiple
     @setActiveBase(multiple)
+
+  setHourFormat: (hourFormat) ->
+    if hourFormat then @hourFormat = "HH:mm:ss" else @hourFormat = "hh:mm:ss a"
 
   setActiveBase: (multiple) ->
     if @multiple is 1024 then @activeBase = FilesizeCalculator.BASE_1024
@@ -82,7 +88,7 @@ class FilesizeCalculator
       return
     if filePath?
       #Use Node.JS filesystem to get the size stat
-      fs.stat filePath, (err, stats) ->
+      fs.stat filePath, (err, stats) =>
         if err?
           #if atom.getLoadSettings().devMode
           console.warn("File size not available, path not found.")
@@ -92,9 +98,9 @@ class FilesizeCalculator
           info.mimeType = mime.lookup(filePath)
           info.size = stats.size
           info.dateCreated = moment(stats.birthtime)
-          .format("MMMM Do YYYY, hh:mm:ss a")
+          .format("MMMM Do YYYY, #{@hourFormat}")
           info.dateChanged = moment(stats.mtime)
-          .format("MMMM Do YYYY, hh:mm:ss a")
+          .format("MMMM Do YYYY, #{@hourFormat}")
           if info.mimeType in FilesizeCalculator.IMAGE_SUPPORT
             try
               imageRect = imageSize(filePath)

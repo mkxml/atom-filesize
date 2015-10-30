@@ -8,6 +8,9 @@ module.exports =
     KibibyteRepresentation:
       type: "boolean"
       default: true
+    "DisplayFullDayTimeOnPopup":
+      type: "boolean"
+      default: true
 
   wk: null
   editor: null
@@ -25,11 +28,13 @@ module.exports =
 
     multiple = 1024
 
+    Use24Hour = atom.config.get("filesize.DisplayFullDayTimeOnPopup")
+
     if atom.config.get('filesize.KibibyteRepresentation') is false
       multiple = 1000
 
     #Instantiate FilesizeCalculator
-    @filesizeCalculator = new FilesizeCalculator(multiple)
+    @filesizeCalculator = new FilesizeCalculator(multiple, Use24Hour)
 
     #Register action events
     @disposables.add @editor?.onDidChangePath => @exec()
@@ -49,20 +54,26 @@ module.exports =
         multiple = 1000
       @filesizeCalculator.setMultiple(multiple)
 
+    atom.config.observe "filesize.DisplayFullDayTimeOnPopup", (checked) =>
+      @filesizeCalculator.setHourFormat(checked)
+
     #Start package automatically on load
     @exec()
 
   deactivate: ->
-    #Destroy FilesizeView instance
-    if @filesizeView?
-      @filesizeView.destroy()
-      @filesizeView = null
+    try
+      #Destroy FilesizeView instance
+      if @filesizeView?
+        @filesizeView.destroy()
+        @filesizeView = null
 
-    #Destroy FilesizeCalculator
-    if @filesizeCalculator?
-      @filesizeCalculator = null
+      #Destroy FilesizeCalculator
+      if @filesizeCalculator?
+        @filesizeCalculator = null
 
-    @disposables.dispose()
+      @disposables?.dispose()
+    catch error
+      console.log('Filesize deactivated through settings')
 
   exec: (callback) ->
     @filesizeCalculator?.fetchReadableInfo (info, err) =>
