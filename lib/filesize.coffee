@@ -26,7 +26,7 @@ module.exports =
     @editor = atom.workspace.getActiveTextEditor()
     @disposables = new CompositeDisposable
 
-    showPopup = atom.config.get("filesize.EnablePopupBehavior")
+    showPopup = atom.config.get("filesize.EnablePopupAppearance")
 
     #Instantiate FilesizeView
     @filesizeView = new FilesizeView(showPopup)
@@ -62,7 +62,7 @@ module.exports =
     atom.config.observe "filesize.DisplayFullDayTimeOnPopup", (checked) =>
       @filesizeCalculator.setHourFormat(checked)
 
-    atom.config.observe "filesize.EnablePopupBehavior", (checked) =>
+    atom.config.observe "filesize.EnablePopupAppearance", (checked) =>
       @filesizeView.togglePopupAppearance(checked)
 
     #Start package automatically on load

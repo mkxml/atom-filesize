@@ -26,6 +26,7 @@ class FilesizeView extends View
       @show()
       fzElement = @wk.querySelector(".current-size")
       fzElement?.innerHTML = info.size
+      console.log(@showPopup)
       if @showPopup
         html = @createTooltip(info)
         @tooltip?.dispose()
@@ -82,9 +83,9 @@ class FilesizeView extends View
     if info.dateChanged?
       itemsHTML += @createListItem("Last changed", info.dateChanged)
 
-    if info.dimmensions.w? and info.dimmensions.h?
-      rect = "#{info.dimmensions.w}x#{info.dimmensions.h}"
-      itemsHTML += @createListItem("Dimmensions", rect)
+    if info.dimensions.w? and info.dimensions.h?
+      rect = "#{info.dimensions.w}x#{info.dimensions.h}"
+      itemsHTML += @createListItem("Dimensions", rect)
 
     infoContainer.innerHTML =
       "<tbody style='display: block; width: 100%;'>
@@ -92,7 +93,7 @@ class FilesizeView extends View
       <tbody/>"
 
     titleContainer = document.createElement('p')
-    titleContainer.style.fontSize = '.9em'
+    titleContainer.style.fontSize = '1em'
     title = document.createTextNode(info.absolutePath)
     titleContainer.appendChild(title)
     content.appendChild(titleContainer)

@@ -72,7 +72,7 @@ class FilesizeCalculator
       mimeType: null
       dateCreated: null
       dateChanged: null
-      dimmensions: {
+      dimensions: {
         w: null
         h: null
       }
@@ -104,8 +104,8 @@ class FilesizeCalculator
           if info.mimeType in FilesizeCalculator.IMAGE_SUPPORT
             try
               imageRect = imageSize(filePath)
-              info.dimmensions.w = imageRect.width
-              info.dimmensions.h = imageRect.height
+              info.dimensions.w = imageRect.width
+              info.dimensions.h = imageRect.height
             catch error
               console.warn("Invalid image format!")
           callback.apply(this, [info, null])
