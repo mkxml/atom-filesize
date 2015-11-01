@@ -1,3 +1,7 @@
+## 0.3.1 - Add the status-bar as formal dependency
+* The status-bar will be installed if not present before the package activates.
+* If the status bar isn't enabled the package won't show.
+
 ## 0.3.0 - New feature arrival - Additional info on click
 * Implements a popup that appears when clicking the `filesize` component.
 * The popup contains additional information about the file opened in the editor.

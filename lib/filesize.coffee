@@ -1,6 +1,7 @@
 {Disposable, CompositeDisposable} = require "atom"
 FilesizeView = require("./filesize-view")
 FilesizeCalculator = require("./filesize-calculator")
+apd = require("atom-package-dependencies")
 
 module.exports =
 
@@ -22,6 +23,9 @@ module.exports =
   filesizeCalculator: null
 
   activate: ->
+    # Force dependency on atom's status-bar
+    apd.install()
+
     @wk = atom.views.getView(atom.workspace)
     @editor = atom.workspace.getActiveTextEditor()
     @disposables = new CompositeDisposable
