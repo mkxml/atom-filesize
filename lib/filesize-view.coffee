@@ -26,7 +26,6 @@ class FilesizeView extends View
       @show()
       fzElement = @wk.querySelector(".current-size")
       fzElement?.innerHTML = info.size
-      console.log(@showPopup)
       if @showPopup
         html = @createTooltip(info)
         @tooltip?.dispose()
@@ -115,14 +114,13 @@ class FilesizeView extends View
 
   show: ->
     if not @visible
-      #Append filesize to the left of the status-bar component
-      statusBar = @wk.querySelector(".status-bar")
-      statusBar?.appendLeft(this)
       @visible = yes
+      return this
+    return null
 
   hide: ->
     @tooltip?.dispose()
-    @wk.querySelector(".file-size")?.remove()
+    @wk.querySelector(".current-size")?.innerHTML = ""
     @visible = no
 
   destroy: ->
