@@ -1,3 +1,8 @@
+## 0.4.0 - Adhere to the Services API for consuming the status-bar
+* The plugin changed the way it relates with the `status-bar`, now it consumes the newly introduced status-bar API via the Atom [Services](http://blog.atom.io/2015/03/25/new-services-API.html) spec.
+* The plugin is no longer compatible with Atom < 1.1.0
+* Should solve the problem some users are having with the status-bar `appendLeft` error.
+
 ## 0.3.1 - Add the status-bar as formal dependency
 * The status-bar will be installed if not present before the package activates.
 * If the status bar isn't enabled the package won't show.
