@@ -1,3 +1,6 @@
+## 0.4.2 - Improve load time
+* Improve load time by requiring dependencies on package activation
+
 ## 0.4.1 - Explicit consumedServices in package.json
 * If you are having problems with 0.4.0 please update to this one.
 
