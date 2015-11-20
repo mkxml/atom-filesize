@@ -1,7 +1,3 @@
-{Disposable, CompositeDisposable} = require "atom"
-FilesizeView = require("./filesize-view")
-FilesizeCalculator = require("./filesize-calculator")
-
 module.exports =
 
   config:
@@ -22,6 +18,11 @@ module.exports =
   filesizeCalculator: null
 
   activate: ->
+    # Requiring external files
+    {Disposable, CompositeDisposable} = require "atom"
+    FilesizeView = require("./filesize-view")
+    FilesizeCalculator = require("./filesize-calculator")
+
     @wk = atom.views.getView(atom.workspace)
     @editor = atom.workspace.getActiveTextEditor()
     @disposables = new CompositeDisposable
