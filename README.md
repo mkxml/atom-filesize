@@ -56,6 +56,10 @@ Contributing is easy, this is a small project so I'm accepting direct PRs and
 any kind of contribution you may have, today I'm focusing on improving test
 coverage and making the package more robust and reliable.
 
+The current styleguide for the project is [Airbnb's JavaScript Styleguide](https://github.com/airbnb/javascript).
+
+Please run eslint with `npm run lint` before sending commits.
+
 Any bugs? Please file an [issue](https://github.com/mkautzmann/atom-filesize/issues/)
 
 Wanna fix it? Please send a [pull request](https://github.com/mkautzmann/atom-filesize/pulls/).

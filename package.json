@@ -7,6 +7,9 @@
     "type": "git",
     "url": "https://github.com/mkautzmann/atom-filesize"
   },
+  "scripts": {
+    "lint": "eslint lib spec"
+  },
   "license": "MIT",
   "dependencies": {
     "atom-space-pen-views": "^2.0.3",
@@ -28,5 +31,11 @@
   "bugs": {
     "url": "https://github.com/mkautzmann/atom-filesize/issues"
   },
-  "homepage": "https://github.com/mkautzmann/atom-filesize"
+  "homepage": "https://github.com/mkautzmann/atom-filesize",
+  "devDependencies": {
+    "babel-eslint": "^7.0.0",
+    "eslint": "^3.7.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^2.0.0"
+  }
 }
