@@ -5,6 +5,9 @@
     "node": true
   },
   "extends": "airbnb/base",
+  "globals": {
+    "atom": true
+  },
   "rules": {
     "global-require": "off"
   }
