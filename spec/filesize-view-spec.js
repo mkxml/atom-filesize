@@ -3,8 +3,6 @@
 import filesizeView from '../lib/filesize-view';
 
 describe('View', () => {
-  // Disable tooltip for these tests
-  atom.config.set('filesize.EnablePopupAppearance', false);
   const workspaceView = atom.views.getView(atom.workspace);
   const view = filesizeView(workspaceView);
 
@@ -14,6 +12,21 @@ describe('View', () => {
       const filesizeElement = workspaceView.querySelector('.current-size');
       view.refresh({ size: 5 });
       expect(filesizeElement.innerHTML).toEqual('5 bytes');
+    });
+    it('should react to config changes', () => {
+      atom.config.set('filesize.KibibyteRepresentation', false);
+      const filesizeElement = workspaceView.querySelector('.current-size');
+      view.refresh({ size: 1024 });
+      expect(filesizeElement.innerHTML).toEqual('1.02 KB');
+    });
+  });
+
+  describe('Tooltip', () => {
+    it('should display on click', () => {
+      const filesizeLink = workspaceView.querySelector('.file-size-link');
+      filesizeLink.click();
+      waitsFor(() => workspaceView.querySelector('.tooltip'));
+      runs(() => expect(tooltip).not.toEqual(null));
     });
   });
 
