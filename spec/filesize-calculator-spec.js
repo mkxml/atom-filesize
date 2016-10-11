@@ -5,7 +5,6 @@ import moment from 'moment';
 
 import {
   loadFileInfoAsync,
-  getReadableSize,
   addPrettyDateInfo,
   addImageInfo,
   addPrettySize,
@@ -17,9 +16,11 @@ let editor = null;
 describe('Calculator functions', () => {
   describe('when fetching file size info', () => {
     beforeEach(() => {
-      waitsForPromise(() => atom.workspace.open('../fixtures/test.txt').then((e) => {
-        editor = e;
-      }));
+      waitsForPromise(() => atom.workspace.open(`${path.resolve('.')}/spec/fixtures/test.txt`)
+        .then((e) => {
+          editor = e;
+        })
+      );
     });
     it('should return the correct file size for a valid file', () => {
       const filepath = editor.buffer.file.path;
