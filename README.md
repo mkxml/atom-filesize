@@ -2,6 +2,8 @@
 
 This package is intended for use with the [Atom Editor](https://atom.io) and it displays the size of the focused file in the [status-bar](https://atom.io/packages/status-bar) component included with Atom.
 
+**New!** Version 1.0.0 is here. It's 100% compatible with Atom 1.0+ APIs.
+
 **Bonus:** If you click on the filesize component it will show a tooltip with more information about the file, try it out!
 
 See the screenshot below for a preview on that new feature.

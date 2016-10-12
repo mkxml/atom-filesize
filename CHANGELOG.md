@@ -1,3 +1,16 @@
+## 1.0.0 - Completely rewritten to JS/ES2015
+* The package now reaches maturity.
+* The codebase is now pure JS/ES2015 compliant.
+* The load times are greatly improved since we are now using lazy module requires. The tooltip info is fetched only when needed.
+* The tooltip now dismisses when clicking away.
+* The tooltip now supports the new ImageEditor from Atom 1.0+.
+* The package now gracefully enables and disables according to the user settings.
+* The package specs are passing on `apm test` and when running over the GUI inside the Atom editor.
+* Internal dependencies have been upgraded.
+* `space-pen-views` dependency has been dropped, since GitHub is not maintaining it anymore.
+* The README was simplified and updated to reflect the recent changes.
+* The package is ready for Atom's most current and upcoming releases.
+
 ## 0.4.2 - Improve load time
 * Improve load time by requiring dependencies on package activation
 
