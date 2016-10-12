@@ -1,11 +1,9 @@
 'use babel';
 
-import path from 'path';
-
 describe('Filesize plugin', () => {
   let workspaceView = null;
   beforeEach(() => {
-    waitsForPromise(() => atom.workspace.open(`${path.resolve('.')}/spec/fixtures/atom_icon.png`));
+    waitsForPromise(() => atom.workspace.open(`${__dirname}/fixtures/atom_icon.png`));
     waitsForPromise(() => atom.packages.activatePackage('status-bar'));
     waitsForPromise(() => atom.packages.activatePackage('filesize'));
     workspaceView = atom.views.getView(atom.workspace);

@@ -1,6 +1,5 @@
 'use babel';
 
-import path from 'path';
 import moment from 'moment';
 
 import {
@@ -16,7 +15,7 @@ let editor = null;
 describe('Calculator functions', () => {
   describe('when fetching file size info', () => {
     beforeEach(() => {
-      waitsForPromise(() => atom.workspace.open(`${path.resolve('.')}/spec/fixtures/test.txt`)
+      waitsForPromise(() => atom.workspace.open(`${__dirname}/fixtures/test.txt`)
         .then((e) => {
           editor = e;
         })
@@ -27,7 +26,7 @@ describe('Calculator functions', () => {
       waitsForPromise(() => loadFileInfoAsync(filepath).then(o => expect(o.size).toEqual(5)));
     });
     it('should return error when trying to open a file that does not exist', () => {
-      const filepath = `${path.resolve('.')}/invalid.txt`;
+      const filepath = `${__dirname}/invalid.txt`;
       waitsForPromise(() => loadFileInfoAsync(filepath).catch(err => expect(err).not.toBeNull()));
     });
   });
@@ -61,7 +60,7 @@ describe('Calculator functions', () => {
     });
   });
   describe('when getting tooltip info', () => {
-    const filepath = `${path.resolve('.')}/spec/fixtures/test.txt`;
+    const filepath = `${__dirname}/fixtures/test.txt`;
     const dateCreated = moment('1970-01-01T00:00:00Z').toDate();
     const dateChanged = moment('1970-01-01T00:00:00Z').toDate();
     it('should get the mime type info', () => {
@@ -90,7 +89,7 @@ describe('Calculator functions', () => {
       expect(moment(info.dateChanged, 'H:mm:ss a').toDate()).toEqual(dateChanged);
     });
     it('should get image dimmensions', () => {
-      const imagePath = `${path.resolve('.')}/spec/fixtures/atom_icon.png`;
+      const imagePath = `${__dirname}/fixtures/atom_icon.png`;
       let info = {
         absolutePath: imagePath,
         mimeType: 'image/png',
