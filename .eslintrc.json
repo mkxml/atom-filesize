@@ -1,0 +1,16 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "jasmine": true,
+    "atomtest": true
+  },
+  "extends": "airbnb/base",
+  "globals": {
+    "atom": true
+  },
+  "rules": {
+    "global-require": "off"
+  }
+}

@@ -1,14 +1,20 @@
 # filesize package for Atom
 
-This package displays the current file's size on the status bar component.
+This package is intended for use with the [Atom Editor](https://atom.io) and it displays the size of the focused file in the status bar component.
 
-**New!** Now if you click on the filesize component on the status bar it will show a tooltip with more information about the file, try it out!
+**Bonus:** If you click on the filesize component it will show a tooltip with more information about the file, try it out!
 
 See the screenshot below for a preview on that new feature.
 
-It works great with your new theme! The popups tries to follow your current theme's style, try switch themes and see for your self.
+It works great with your new theme! The popups tries to follow your current theme's style, try switching themes and see for yourself.
 
-We intend to add new stuff to this tooltip some time in the future, let me know if you have an idea of something cool to add there.
+# Get it now
+
+If you have Atom Shell Commands run this on your terminal to get it now:
+
+  `apm install filesize`
+
+You can also find this package searching for `filesize` in the Atom package browser inside Settings.
 
 # Screenshots
 
@@ -20,41 +26,35 @@ We intend to add new stuff to this tooltip some time in the future, let me know 
 
 <img src="https://cldup.com/snKMrn_B-T.jpg" style="width: 100%; max-width: 784px;" title="Light screenshot">
 
-# Get it now
-
-If you have Atom Shell Commands run this on your terminal to get it now:
-
-  `apm install filesize`
-
-You can also find this package searching for `filesize` in the Atom package browser inside Settings.
-
 # How it works
 
-It uses Node.JS to calculate the size in bytes of the current file in focus by Atom.
+It uses Node.JS's [fs](https://nodejs.org/api/fs.html) module to calculate the size in bytes of the current file in focus.
 
-If the popup is enable it also fetches some additional info one might want to take a quick look such as:
+If the popup is enabled (by default it is), it fetches some additional info you might want to see:
   - Absolute path
   - Mime type
   - Creation date
   - Date of last change
   - Dimensions (if it's an image)
 
-It works along side with the status-bar component, so you need to enable both
-components. The status-bar component is installed and enabled by default by Atom, so you don't need to worry about it.
+It works along side the status-bar component, so you need to have both enabled.
+The status-bar component is installed and enabled by default by Atom. Thus, usually, you won't need to worry about it.
 
 # Settings
 
-It has three settings under Atom `Settings->Packages->filesize`:
+The package has three settings located in `Settings->Packages->filesize`:
 
-  - `Kibibyte Representation`, whether you want to show the size using Kibibyte or Kilobyte representations. It defaults to using the Kibibyte one.
+  - `Kibibyte Representation`, whether you want to show the size using Kibibyte or Kilobyte representations ([SI](https://en.wikipedia.org/wiki/International_System_of_Units)). It defaults to using the Kibibyte one.
   - `Enable Popup Appearance`, whether the popup will show on clicking the `filesize` component on the status bar. Defaults to showing the popup.
   - `Display Full Day Time On Popup`, whether to use 24 or 12 hour time display. It defaults to using the 24-hour format.
 
 # Contributing
 
-Contributing is easy, this is a small project so I'm accepting direct PRs and
-any kind of contribution you may have, today I'm focusing on improving test
-coverage and making the package more robust and reliable.
+You are welcome to send any issues or pull requests.
+
+The current styleguide for the project is [Airbnb's JavaScript Styleguide](https://github.com/airbnb/javascript).
+
+Please run eslint with `npm run lint` and `apm test` before sending commits.
 
 Any bugs? Please file an [issue](https://github.com/mkautzmann/atom-filesize/issues/)
 
