@@ -8,6 +8,7 @@ import {
   addImageInfo,
   addPrettySize,
   addMimeTypeInfo,
+  addGzipSize,
 } from '../lib/filesize-calculator';
 
 let editor = null;
@@ -97,6 +98,16 @@ describe('Calculator functions', () => {
       info = addImageInfo(info);
       expect(info.dimmensions.width).toEqual(25);
       expect(info.dimmensions.height).toEqual(25);
+    });
+    it('should get gzipped size with kibibyte representation', () => {
+      let info = { absolutePath: `${__dirname}/fixtures/gzipTest.txt` };
+      info = addGzipSize(info, { useKibibyteRepresentation: true });
+      expect(info.gzipSize).toEqual('1.42 KiB');
+    });
+    it('should get gzipped size with SI representation', () => {
+      let info = { absolutePath: `${__dirname}/fixtures/gzipTest.txt` };
+      info = addGzipSize(info, { useKibibyteRepresentation: false });
+      expect(info.gzipSize).toEqual('1.45 KB');
     });
   });
 });
