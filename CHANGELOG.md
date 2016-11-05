@@ -1,3 +1,9 @@
+## 2.0.0 - Add Gzip support
+* The package now has the option to display the gzip size of the file in the popup.
+* This option is configurable via package settings. It is on by default.
+* Added [gzip-size](https://www.npmjs.com/package/gzip-size) dependency to make this possible.
+* Simplified Airbnb guide handling, just importing the base guide now.
+
 ## 1.0.0 - Completely rewritten to JS/ES2015
 * The package now reaches maturity.
 * The codebase is now pure JS/ES2015 compliant.
