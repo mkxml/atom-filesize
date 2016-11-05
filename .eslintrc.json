@@ -6,7 +6,7 @@
     "jasmine": true,
     "atomtest": true
   },
-  "extends": "airbnb/base",
+  "extends": "airbnb-base",
   "globals": {
     "atom": true
   },
