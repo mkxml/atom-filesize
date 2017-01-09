@@ -1,3 +1,6 @@
+## 2.0.1 - Changed publisher username
+* Minor change, does not affect the codebase. Just changed the username references in docs from @mkautzmann to @mkxml.
+
 ## 2.0.0 - Add Gzip support
 * The package now has the option to display the gzip size of the file in the popup.
 * This option is configurable via package settings. It is on by default.
