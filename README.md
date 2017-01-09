@@ -56,10 +56,10 @@ The current styleguide for the project is [Airbnb's JavaScript Styleguide](https
 
 Please run eslint with `npm run lint` and `apm test` before sending commits.
 
-Any bugs? Please file an [issue](https://github.com/mkautzmann/atom-filesize/issues/)
+Any bugs? Please file an [issue](https://github.com/mkxml/atom-filesize/issues/)
 
-Wanna fix it? Please send a [pull request](https://github.com/mkautzmann/atom-filesize/pulls/).
+Wanna fix it? Please send a [pull request](https://github.com/mkxml/atom-filesize/pulls/).
 
 # Authors
 
-- [Matheus Kautzmann](https://github.com/mkautzmann)
+- [Matheus Kautzmann](https://github.com/mkxml)

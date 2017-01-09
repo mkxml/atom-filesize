@@ -5,7 +5,7 @@
   "description": "Displays the current file's size on the status bar",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mkautzmann/atom-filesize"
+    "url": "https://github.com/mkxml/atom-filesize"
   },
   "scripts": {
     "lint": "eslint lib spec"
@@ -29,9 +29,9 @@
   },
   "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/mkautzmann/atom-filesize/issues"
+    "url": "https://github.com/mkxml/atom-filesize/issues"
   },
-  "homepage": "https://github.com/mkautzmann/atom-filesize",
+  "homepage": "https://github.com/mkxml/atom-filesize",
   "devDependencies": {
     "babel-eslint": "^7.0.0",
     "eslint": "^3.7.1",
