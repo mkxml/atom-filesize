@@ -1,3 +1,7 @@
+## 2.0.2 - Fix jpeg behavior, export filesize-calculator
+* The image info was not being displayed for `image/jpeg` mime types. Is it OK now.
+* The `filesize-calculator.js` functions were exported to a separate [NPM package](https://npmjs.com/package/filesize-calculator).
+
 ## 2.0.1 - Changed publisher username
 * Minor change, does not affect the codebase. Just changed the username references in docs from @mkautzmann to @mkxml.
 
