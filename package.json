@@ -12,7 +12,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "filesize-calculator": "^1.0.0"
+    "filesize-calculator": "^1.0.1"
   },
   "consumedServices": {
     "status-bar": {
