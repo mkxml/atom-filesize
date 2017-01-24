@@ -1,3 +1,8 @@
+## 2.0.4 - Fix tooltip breaking on certain themes
+* Some themes, like Atom Material, were breaking the tooltip styling. That's now fixed!
+* Updated specs, removing `filesize-calculator` stuff. It was a duplicated suite.
+* Updated LICENSE, 2017!
+
 ## 2.0.3 - Update filesize-calculator
 * Displays correct symbol for kilobyte. (KB -> kB).
 
