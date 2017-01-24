@@ -20,7 +20,7 @@ describe('View', () => {
       atom.config.set('filesize.KibibyteRepresentation', false);
       const filesizeElement = workspaceView.querySelector('.current-size');
       view.refresh({ size: 1024 });
-      expect(filesizeElement.innerHTML).toEqual('1.02 KB');
+      expect(filesizeElement.innerHTML).toEqual('1.02 kB');
     });
   });
 
