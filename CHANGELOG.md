@@ -1,3 +1,9 @@
+## 3.0.0 - Change config UseKibibyteRepresentation to UseDecimal
+* Breaking change: Config `UseKibibyteRepresentation` is now `UseDecimal`. When set to true it will now use base 1000, base 1024 is used when it's false which is the default behavior for this option.
+* Small refactoring in source code.
+* Updated filesize-calculator to 2.0.0.
+* Updated dev dependencies.
+
 ## 2.0.4 - Fix tooltip breaking on certain themes
 * Some themes, like Atom Material, were breaking the tooltip styling. That's now fixed!
 * Updated specs, removing `filesize-calculator` stuff. It was a duplicated suite.

@@ -4,9 +4,9 @@ This package is intended for use with the [Atom Editor](https://atom.io) and it 
 
 **Bonus:** If you click on the filesize component it will show a tooltip with more information about the file, try it out!
 
-**New!** Version 2.0.0 is here. We now have **gzip** support, open the popup and check it out!
-
 It works great with your new theme! The popups tries to follow your current theme's style, try switching themes and see for yourself.
+
+**Config change in 3.0.0:** `KibibyteRepresentation` config has been changed to `UseDecimal`. The new default value is `false` to preserve the old behavior. Set to true to use base 1000 instead of base 1024.
 
 # Get it now
 
@@ -44,9 +44,10 @@ The status-bar component is installed and enabled by default by Atom. Thus, usua
 
 The package has three settings located in `Settings->Packages->filesize`:
 
-  - `Kibibyte Representation`, whether you want to show the size using Kibibyte or Kilobyte representations ([SI](https://en.wikipedia.org/wiki/International_System_of_Units)). It defaults to using the Kibibyte one.
+  - `Use Decimal`, whether you want to show the size using Decimal or [IEC/ISO80000](https://en.wikipedia.org/wiki/ISO/IEC_80000). It defaults to using the IEC representation.
   - `Enable Popup Appearance`, whether the popup will show on clicking the `filesize` component on the status bar. Defaults to showing the popup.
   - `Display Full Day Time On Popup`, whether to use 24 or 12 hour time display. It defaults to using the 24-hour format.
+  - `Display Gzipped Size on Popup`, whether to enable gzip size appearance on the popup.
 
 # Contributing
 
