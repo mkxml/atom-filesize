@@ -17,7 +17,7 @@ describe('View', () => {
       expect(filesizeElement.innerHTML).toEqual('5 bytes');
     });
     it('should react to config changes', () => {
-      atom.config.set('filesize.KibibyteRepresentation', false);
+      atom.config.set('filesize.UseDecimal', true);
       const filesizeElement = workspaceView.querySelector('.current-size');
       view.refresh({ size: 1024 });
       expect(filesizeElement.innerHTML).toEqual('1.02 kB');
