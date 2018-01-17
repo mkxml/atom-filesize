@@ -1,3 +1,7 @@
+## 3.0.1 - Small fixes
+* Updated dependencies, now using `filesize-calculator` version `3.0.0`.
+* Fixed gzip size not showing properly when option `useDecimal` was set to `true`.
+
 ## 3.0.0 - Change config UseKibibyteRepresentation to UseDecimal
 * Breaking change: Config `UseKibibyteRepresentation` is now `UseDecimal`. When set to true it will now use base 1000, base 1024 is used when it's false which is the default behavior for this option.
 * Small refactoring in source code.
