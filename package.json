@@ -1,7 +1,7 @@
 {
   "name": "filesize",
   "main": "./lib/filesize",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "Displays the current file's size on the status bar",
   "repository": {
     "type": "git",

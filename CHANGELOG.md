@@ -1,3 +1,8 @@
+## 4.0.0 - Remote file support and fixes
+* **Remote file support**. You can check the size in the status bar. It will be preffixed by `~` indicating its an estimated size info.
+* Fixed tooltip background. In some environments and situations the tooltip background was black when its suposed to be a darker color of the current theme.
+* Fixed size not being updated upon first save. Tweak `scheduleSizeUpdate` to perform a check after Atom has actually saved the file.
+
 ## 3.0.1 - Small fixes
 * Updated dependencies, now using `filesize-calculator` version `3.0.0`.
 * Fixed gzip size not showing properly when option `useDecimal` was set to `true`.

@@ -6,7 +6,7 @@ This package is intended for use with the [Atom Editor](https://atom.io) and it 
 
 It works great with your new theme! The popups tries to follow your current theme's style, try switching themes and see for yourself.
 
-**Config change in 3.0.0:** `KibibyteRepresentation` config has been changed to `UseDecimal`. The new default value is `false` to preserve the old behavior. Set to true to use base 1000 instead of base 1024.
+**New in 4.0.0:** Remote file support. Now you can quickly check the estimated size of your remote project files. This includes support for the popular [nuclide](https://github.com/facebook/nuclide) extension. More details of the implementation below.
 
 # Get it now
 
@@ -39,6 +39,16 @@ If the popup is enabled (by default it is), it fetches some additional info you 
 
 It works along side the status-bar component, so you need to have both enabled.
 The status-bar component is installed and enabled by default by Atom. Thus, usually, you won't need to worry about it.
+
+# Remote files
+
+Since `4.0.0` filesize supports remote files. The extension is basically reading the editor buffer to estimate the file size.
+
+The estimated size is identified by the `~` symbol before the formatted size in the status bar.
+
+Tooltip detailed info does not feature the whole set of information.
+
+When working with remote files the extension does not have access to the whole file metadata, so we are showing estimated size only. This may change in future releases.
 
 # Settings
 
