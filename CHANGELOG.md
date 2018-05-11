@@ -1,3 +1,7 @@
+## 4.0.1 - Fix linting issues and updated dependencies
+- Fix linting issues
+- Updated dependencies
+
 ## 4.0.0 - Remote file support and fixes
 * **Remote file support**. You can check the size in the status bar. It will be preffixed by `~` indicating its an estimated size info.
 * Fixed tooltip background. In some environments and situations the tooltip background was black when its suposed to be a darker color of the current theme.
