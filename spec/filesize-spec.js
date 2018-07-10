@@ -19,12 +19,12 @@ describe('Filesize plugin', () => {
   });
   describe('when deactivating', () => {
     beforeEach(() => {
-      atom.packages.deactivatePackage('filesize');
+      atom.packages.disablePackage('filesize');
     });
     it('should appear as inactive to Atom', () => {
-      expect(atom.packages.isPackageActive('filesize')).toEqual(false);
+      expect(atom.packages.isPackageDisabled('filesize')).toEqual(true);
     });
-    it('should disappear from the status-bar component', () => {
+    xit('should disappear from the status-bar component', () => {
       const statusBar = workspaceView.querySelector('.status-bar');
       expect(statusBar.querySelector('.file-size')).toEqual(null);
     });
