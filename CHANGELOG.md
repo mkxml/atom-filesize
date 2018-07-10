@@ -1,3 +1,8 @@
+## 4.0.2 - Updated dependencies and tests
+- Fix linting issue
+- Updated dependencies
+- Fix tests for newer Atom version and add default npm test script
+
 ## 4.0.1 - Fix linting issues and updated dependencies
 - Fix linting issues
 - Updated dependencies
