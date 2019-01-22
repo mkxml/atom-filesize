@@ -1,3 +1,6 @@
+## 4.0.3 - Updated dependencies
+- Updated dependencies
+
 ## 4.0.2 - Updated dependencies and tests
 - Fix linting issue
 - Updated dependencies
